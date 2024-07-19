@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/button-has-type */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useEffect, useRef, useState } from 'react';
 import styles from './App.module.css';
 import { Background } from './components/Background';
@@ -15,44 +12,6 @@ import { useThrottle } from './utils/useThrottle';
 
 const ITEM_COUNT = 16;
 
-// const usePrevious = (value: any, initialValue: any) => {
-//   const ref = useRef(initialValue);
-//   useEffect(() => {
-//     ref.current = value;
-//   });
-//   return ref.current;
-// };
-
-// const useEffectDebugger = (
-//   effectHook: any,
-//   dependencies: React.DependencyList,
-//   dependencyNames = [],
-// ) => {
-//   const previousDeps = usePrevious(dependencies, []);
-
-//   const changedDeps = dependencies.reduce((accum, dependency, index) => {
-//     if (dependency !== previousDeps[index]) {
-//       const keyName = dependencyNames[index] || index;
-//       return {
-//         ...(accum as any),
-//         [keyName]: {
-//           before: previousDeps[index],
-//           after: dependency,
-//         },
-//       };
-//     }
-
-//     return accum;
-//   }, {});
-
-//   if (Object.keys(changedDeps as any).length) {
-//     console.log('[use-effect-debugger] ', changedDeps);
-//   }
-
-//   // eslint-disable-next-line react-hooks/exhaustive-deps
-//   useEffect(effectHook, dependencies);
-// };
-
 const App = () => {
   const [query, setQuery] = useState('');
   const [touched, setTouched] = useState(false);
@@ -64,12 +23,9 @@ const App = () => {
   const isCalculatingRef = useRef<boolean>(false);
   const [isWasmModuleLoading, setIdWasmModuleLoading] = useState<boolean>(true);
   const modelSearcherRef = useRef(new ModelSearcher());
-  // const gridRef = useRef<HTMLDivElement>(null);
   const FuzzSearcherRef = useRef<FuzzySearcher | null>(null);
   const throttledQuery = useThrottle(query, 300);
   useEffect(() => {
-    // if (gridRef.current)
-    //   wrapGrid(gridRef.current, { easing: 'backOut', stagger: 10, duration: 300 });
     const initWasm = async () => {
       let threads = navigator.hardwareConcurrency;
       if (threads > 8) threads = 8;
@@ -141,7 +97,6 @@ const App = () => {
             .slice(0, ITEM_COUNT);
           setResults(searchResult);
           isCalculatingRef.current = false;
-          // eslint-disable-next-line no-console
           break;
         }
         case SearchMode.ai: {
@@ -167,25 +122,6 @@ const App = () => {
     };
     search();
   }, [isWasmModuleLoading, mode, selectedTags, throttledQuery]);
-  // const handleExportDict = async () => {
-  //   if (!exportingDict) {
-  //     if (
-  //       modelSearcherRef.current.isInitialized &&
-  //       !isWasmModuleLoading &&
-  //       FuzzSearcherRef.current
-  //     ) {
-  //       console.log('starting');
-  //       setIsExportingDict(true);
-  //       await modelSearcherRef.current.exportDict();
-  //       // const similarities = await modelSearcherRef.current.similarity(throttledQuery);
-  //       // const searchResult = await FuzzSearcherRef.current.similaritiesToSearchResults(
-  //       //   similarities,
-  //       //   selectedTags,
-  //       // );
-  //       // setResults(searchResult);
-  //     }
-  //   }
-  // };
   const handleTagClick = (tag: number) => {
     if (selectedTags.includes(tag)) {
       const updatedTags = selectedTags.filter((selectedTag) => selectedTag !== tag);
@@ -203,14 +139,6 @@ const App = () => {
   return (
     <div className={styles.App}>
       <Background />
-      {/* <input
-        type="checkbox"
-        checked={mode === SearchMode.fast}
-        onChange={handleClickFastSearch}
-      />{' '}
-      Fast
-      <input type="checkbox" checked={mode === SearchMode.ai} onChange={handleClickAiSearch} /> AI */}
-
       <h1 className={styles.H1} style={{ opacity: query !== '' || touched ? 0 : 1 }}>
         Not The Hidden Wiki
       </h1>

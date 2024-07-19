@@ -26,7 +26,6 @@ pub struct AISearchResult {
     id: u64,
     title: String,
     description: String,
-    // content: String,
     thumbnail: String,
     url: String,
     score: f32,
@@ -192,13 +191,11 @@ pub fn search(
         .into_iter()
         .take(LIMIT)
         .map(|(website, score, max_index)| {
-            // let content_chunks = get_word_chunks(&website.content, CHUNK_WORD_COUNT);
             AISearchResult {
             title: website.title.to_string(),
             url: website.url.to_string(),
             description: website.description.to_string(),
             thumbnail: website.thumbnail.to_string(),
-            // content: content_chunks[max_index].clone().join(" "),
             id: website.id,
             score,
             tags: website

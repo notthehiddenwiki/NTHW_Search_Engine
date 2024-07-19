@@ -39,11 +39,4 @@ export class FuzzySearcher {
     }
     return Promise.all(promises);
   }
-
-  // public async similaritiesToSearchResults(
-  //   similarities: number[],
-  //   filterByTags: number[],
-  // ): Promise<SearchResult[]> {
-  //   return this.workers[0].similaritesToSearchResults(similarities, filterByTags);
-  // }
 }

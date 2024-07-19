@@ -16,13 +16,12 @@ pub struct ExtractedWebsite {
     pub url: String,
     pub tags: Vec<usize>,
 }
-// -----
+// ----- Example text:
 // - [Velociraptor](https://github.com/Velocidex/velociraptor)
 // - [FlareVM](https://github.com/mandiant/flare-vm)
 // - [Volatility](https://github.com/volatilityfoundation/volatility)
 // - [Autopsy](https://www.autopsy.com/)
 // - [Zimmermans's Tools](https://ericzimmerman.github.io/#!index.md)
-// - [Nirsoft Tools](https://www.nirsoft.ne
 //
 // TODO: Add md path
 // TODO: handle [notlink](https)
@@ -78,15 +77,6 @@ fn read_md_file(path: &Path) -> io::Result<String> {
     reader.read_to_string(&mut content)?;
     Ok(content)
 }
-
-// fn read_downloaded_websites(path: &str) -> io::Result<Vec<ExtractedWebsite>> {
-//     let file = fs::File::open(path)?;
-//     let mut reader = io::BufReader::new(file);
-//     let mut content = String::new();
-//     reader.read_to_string(&mut content)?;
-//     let websites: Vec<ExtractedWebsite> = serde_json::from_str(&content)?;
-//     Ok(websites)
-// }
 
 pub async fn extract_links(
     folder_path: &str,

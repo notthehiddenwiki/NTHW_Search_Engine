@@ -28,14 +28,7 @@ export const HitItem = ({
     }
   };
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div className={styles.Card}>
-      {/* <div>
-        <img
-          srcSet={`/nthw_search_engine/resized_screenshots/${website.id}.png 455w, /nthw_search_engine/screenshots/${website.id}.png 1600w`}
-          alt={website.title}
-        />
-      </div> */}
       <div className={styles.Clickable} onClick={handleClick}>
         <p className={styles.Title}>{website.title}</p>
         <p className={styles.Description}>{website.description}</p>

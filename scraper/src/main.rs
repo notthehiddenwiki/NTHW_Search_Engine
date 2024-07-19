@@ -12,7 +12,6 @@ use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 use tokio::sync::Semaphore;
 use tracing::info;
-// use tracing_subscriber::util::SubscriberInitExt;
 use tracing_subscriber::util::SubscriberInitExt;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
@@ -26,12 +25,9 @@ struct WebsiteData {
 #[tokio::main]
 async fn main() {
     dotenv().ok();
-    // console_subscriber::init();
     tracing_subscriber::fmt()
         .compact()
         .with_max_level(tracing::Level::INFO)
-        // .with_file(true)
-        // .with_line_number(false)
         .with_thread_ids(true)
         .with_target(false)
         .finish()
