@@ -10,7 +10,6 @@ const WebsiteRenderer = ({ website }: { website: SearchResult }) => {
     <div
       className={styles.Container}
       style={{
-        // paddingBottom: `${(200 / 400) * 100}%`,
         paddingBottom: 216,
         width: 400,
       }}

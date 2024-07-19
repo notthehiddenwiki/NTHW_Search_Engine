@@ -33,7 +33,6 @@ export class EmbeddingExtractionWorker {
       revision: 'default',
     });
     await initSearchModule();
-    // init();
     this.isInitialized = true;
   }
 
